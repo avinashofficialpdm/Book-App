@@ -1,0 +1,36 @@
+
+ <app-header></app-header>
+<div class="container">
+  <h2 class="m-3" style="text-align: center;">Admin Login</h2>
+  <div class="row">
+      <div class="col-4">
+         
+      </div>
+      <div class="col-4">
+          <form [formGroup]="adminloginform">
+              <div class="m-5">
+                  <input type="text" class="form-control" formControlName="username" placeholder="Enter Your Name" >
+                  <div *ngIf="validate.username?.invalid && validate.username?.touched">
+                    <small class="text-danger" *ngIf="validate.username?.errors?.['required']">UserName is required</small>
+                    <small class="text-danger" *ngIf="validate.username?.errors?.['pattern']">Please Enter Valid UserName</small>
+                 
+                   </div>
+              </div>
+              <div class="m-5">
+                  <input type="password" class="form-control" formControlName="password" placeholder="password"
+                 >
+                  <div *ngIf="validate.password?.invalid && validate.password?.touched">
+                    <small class="text-danger" *ngIf="validate.password?.errors?.['required']">Password is required </small>
+                 
+                   </div>
+              </div>
+              <div class="m-5">
+                <button class="btn btn-success form-control" (click)="adminLogin()" >LOGIN</button>
+              </div>
+          </form>
+      </div>
+      <div class="col-4"></div>
+      <!-- {{adminloginform.value | json}} -->
+
+  </div>
+</div>

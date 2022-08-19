@@ -1,0 +1,49 @@
+
+<app-header></app-header>
+
+<div class="container m-5">
+  <div class="row">
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        
+        <img src="{{data.img}}" class="card-img-top" alt="...">
+        <div class="card-body m-5" >
+          <div>
+        <h5 style="font-family: cursive;">Name:{{data.name}}</h5>
+      </div>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <div>
+            <h6 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Author:{{data.author}}</h6>
+          </div>
+       
+        </div>
+        
+       </div>
+    </div>
+    <div class="col-4" >
+    
+      <h3 style="text-align: center;">ADD REVIEW & COMMANDS</h3>
+      
+    <form [formGroup]="reviewform" >
+      <div class="m-5">
+        <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+        <div>Rating: {{reviewform.value.rating}}</div>
+        <!-- <p>form is valid: {{ reviewform.valid ? 'true' : 'false' }}</p> -->
+      </div>
+      <div class="m-5">
+      <textarea name="" placeholder="" id="" class="form-control" cols="10" formControlName="comments" rows="5"></textarea>
+
+      </div>
+
+      <div class="m-5">
+       <button class="btn btn-success" (click)=" addReview()">SUBMIT</button>
+      </div>
+    
+  </form>
+   
+    
+
+    <div class="col-4"></div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<app-header></app-header>
+<div class="container">
+  <h2 style="text-align: center;">Books Details</h2>
+  <div class="row mb-3">
+      <div class="col-1" style="color:lightskyblue ;"></div>
+     
+      <div class="col-10 mb-5">
+
+        <div class="addBtn text-center">
+          <button class="btn btn-success" *ngIf="adminlogin" routerLink="addbook">ADD BOOKS</button>
+        </div>
+        <div class="addBtn">
+          <button class="btn btn-primary" *ngIf="adminlogin" (click)="adminLogout()">LOGOUT</button>
+        </div>
+
+
+        <div class="addBtn">
+          <button class="btn btn-primary" *ngIf="userloggedin" (click)="userLogout()">LOGOUT</button>
+        </div>
+
+          <table class="table mb-3 table-bordered table-striped m-5" style="border-radius: 20px;">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Name</th>
+                 
+                  <th scope="col">Author</th>
+                  <th scope="col" *ngIf="adminlogin">Action</th>
+                    <!-- userlogin case -->
+                  <th scope="col" *ngIf="userloggedin">Action</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of data">
+                 <td>   <img src="{{item.img}}" alt="" style="height: 100px;width: 100px;"></td>
+               
+                  <td>{{item.name}}</td>
+                  <td>{{item.author}}</td>
+                  <td *ngIf="adminlogin">
+                    <button class="btn btn-danger m-5" (click)="deleteBooks(item.id)">DEL</button>
+                    <button class="btn btn-warning" [routerLink]="['/viewreview/'+item.id]" >VIEW RATING</button>
+                  </td>
+
+                  <td *ngIf="userloggedin">
+                    <button class="btn btn-danger" [routerLink]="['/addreview/'+item.id]">ADD REVIEW</button>
+                  </td>
+
+
+              </tr>
+              </tbody>
+                  
+          
+
+
+              
+             
+
+
+
+          </table>    
+      </div>  
+      <div class="col-1"></div>
+      
+  </div>    
+          
+</div>

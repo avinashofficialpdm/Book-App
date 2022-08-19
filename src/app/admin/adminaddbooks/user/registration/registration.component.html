@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+
+<div class="container">
+  <h2 class="m-3" style="text-align: center; ">REGISTRATION</h2>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4" style="margin-top: 40px;">
+      <form action="" [formGroup]="registerform">
+
+
+
+        <div class="m-5">
+             <input type="text"  placeholder="Enter your Name" class="form-control" formControlName="name"
+            >
+             <div *ngIf="validate.name?.invalid && validate.name?.touched">
+               <small class="text-danger" *ngIf="validate.name?.errors?.['required']">Name is required</small>
+               <small class="text-danger" *ngIf="validate.name?.errors?.['pattern']">Please Enter Valid Name</small>
+            
+              </div>
+            
+             
+
+      </div>
+
+        
+
+        <div class="m-5">
+          <input type="text" placeholder="username" class="form-control" formControlName="username"
+         >
+          <div *ngIf="validate.username?.invalid && validate.username?.touched">
+            <small class="text-danger" *ngIf="validate.username?.errors?.['required']">UserName is required</small>
+            <small class="text-danger" *ngIf="validate.username?.errors?.['pattern']">Please Enter Valid UserName</small>
+         
+           </div>
+         
+     </div>
+
+
+
+     <div class="m-5">
+      <input type="password" placeholder="password" class="form-control" formControlName="password"
+    >
+      <div *ngIf="validate.password?.invalid && validate.password?.touched">
+        <small class="text-danger" *ngIf="validate.password?.errors?.['required']">Password is required </small>
+     
+       </div>
+     
+ </div>
+
+
+ <div class="m-5">
+   <button class="btn btn-success form-control" type="button" (click)="userRegistration()">REGISTER</button>
+ </div>
+
+
+      </form>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

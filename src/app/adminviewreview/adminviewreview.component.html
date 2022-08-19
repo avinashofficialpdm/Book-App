@@ -1,0 +1,38 @@
+<div class="continer">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <table class="table mb-3 table-bordered table-striped m-5" style="border-radius: 20px;">
+                <thead class="table-dark">
+                  <tr>
+                   
+                    <th scope="col">User ID</th>
+                    <th scope="col">RATINGS</th>
+                    <th scope="col">COMMENTS</th>
+                    
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of result">
+                      
+                        <td>{{res.uid}}</td>
+                        <td>{{res.rating}}</td>
+                        <td>{{res.comments}}</td>
+                    </tr>
+                </tbody>
+                    
+            
+  
+  
+                
+               
+  
+  
+  
+            </table>    
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+</div>
