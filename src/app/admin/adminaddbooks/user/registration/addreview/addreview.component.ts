@@ -1,7 +1,10 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/core/book.service';
+import { bookdetails } from 'src/app/models/bookdetails';
+import { ratingdetails } from 'src/app/models/ratingdetails';
 
 @Component({
   selector: 'app-addreview',
@@ -10,11 +13,11 @@ import { BookService } from 'src/app/core/book.service';
 })
 export class AddreviewComponent implements OnInit {
 
-  currentid:any
-   data:any
-   book:any
+  currentid:string|null=''
+   data:bookdetails|undefined
+   book:bookdetails[]=[]
 
-   result:any
+  //  result:any
 
   // data:any[]=[]
 
@@ -23,15 +26,15 @@ export class AddreviewComponent implements OnInit {
 
   reviewform=this.fb.group({
     rating: [''],
-     comments:['']
+     comments:['',[Validators.required]]
   })
 
   ngOnInit() {
      this.currentid=this.route.snapshot.paramMap.get("id")
-     this.currentid=JSON.parse(this.currentid)
+    //  this.currentid=JSON.parse(this.currentid)
      console.log(this.currentid);
      
-     this.bs.getbookDetails(this.currentid).subscribe((res:any)=>{
+     this.bs.getbookDetails(this.currentid).subscribe((res:bookdetails)=>{
        this.data=res
        console.log(this.data);
        
@@ -42,14 +45,16 @@ export class AddreviewComponent implements OnInit {
 
   addReview(){
   //  let review=this.reviewform.value
-  let data={"uid":localStorage.getItem('userloggedin'),"comments":this.reviewform.value.comments,"rating":this.reviewform.value.rating}
+  let data={"uid":localStorage.getItem('userloggedin'),"comments":this.reviewform.value.comments,"rating":JSON.parse(this.reviewform.value.rating||"")}
   console.log(data);
-  this.bs.addReview().subscribe((res:any)=>{
+  this.bs.addReview().subscribe((res:bookdetails[])=>{
     this.book=res
     console.log(this.book);
    let reviewbook= this.book.find((element:any)=>element.id==this.currentid)
    console.log(reviewbook);
+   if(reviewbook){
  reviewbook.review.push(data)
+}
   
    
    console.log(reviewbook);

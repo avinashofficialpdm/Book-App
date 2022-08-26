@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/core/book.service';
+import { userdetails } from 'src/app/models/userdetails';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,10 @@ export class LoginComponent implements OnInit {
     return this.userlogin.controls
 
   }
-  data:any;
-  myuser:any;
+  data:userdetails[]=[]
+  myuser:userdetails|undefined
+  // data:any
+  // myuser:any
 
   userlogintoken:boolean=false
 
@@ -27,32 +30,40 @@ export class LoginComponent implements OnInit {
   })
 
   ngOnInit() {
-
-
-
   }
 
   userLogin(){
 
 
-    this.bs.userLogin().subscribe((res)=>{
+    this.bs.userLogin().subscribe((res:userdetails[])=>{
       this.data=res
       console.log(this.data);
       
-     this.myuser= this.data.find((user:any)=>user.username==this.userlogin.value.username)
-      // console.log(user);
-      console.log(this.myuser);
-       if(this.myuser.password==this.userlogin.value.password){
+         
+        this.myuser= this.data.find((user:userdetails)=>user.username==this.userlogin.value.username)
+        console.log(this.myuser);
 
-        // console.warn("Login Successful...")
+       
+     
+      //  console.log(user);
+      if( this.myuser){
+       if(this.myuser.password==this.userlogin.value.password){
+                 // console.warn("Login Successful...")
      alert("Login Successful...");
-     localStorage.setItem('userloggedin',this.myuser.id)
-     this.route.navigateByUrl('home')
+     if(this.myuser.id){  
+    //  localStorage.setItem('userloggedin',this.myuser.id.toString())
+    localStorage.setItem('userloggedin',this.myuser.id.toString())
+   }
+  // localStorage.setItem('userloggedin')
+
+   this.route.navigateByUrl('home')
+       }  else{
+        alert("Invalid data..Please try Again")
+      }
+
          
        }
-       else{
-         alert("Invalid data..Please try Again")
-       }
+     
        
     //  })
     })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/core/book.service';
 
@@ -10,14 +10,14 @@ import { BookService } from 'src/app/core/book.service';
 })
 export class AdminaddbooksComponent implements OnInit {
 
-imgurl:any
+imgurl?:string
 
   constructor(private fb:FormBuilder,private bs:BookService,private route:Router) { }
 
   addbooks=this.fb.group({
     img:[''],
-    name:[''],
-    author:[''],
+    name:['',[Validators.required]],
+    author:['',[Validators.required]],
     review:[[]]
 
   })
@@ -43,6 +43,8 @@ imgurl:any
     this.addbooks.value.img=this.imgurl
     let book=this.addbooks.value
     book.review=[]
+    console.log(book);
+    
     this.bs.addBooks(book)
     console.log(book);
     

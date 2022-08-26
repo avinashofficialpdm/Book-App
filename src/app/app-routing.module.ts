@@ -8,17 +8,27 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { AdminviewreviewComponent } from './adminviewreview/adminviewreview.component';
 import { AuthguardGuard } from './authguard.guard';
 import { HomeComponent } from './home/home/home.component';
+import { ResolveGuard } from './resolve.guard';
 import { UserguardGuard } from './userguard.guard';
 
 const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent,
+    resolve:{
+      data:ResolveGuard
+    }
+
+  },
 
   {
     path:'home',
-   component:HomeComponent
+   component:HomeComponent,
+   resolve:{
+     data:ResolveGuard
+   }
   },
- { path:'',
-  component:HomeComponent
-},
+ 
 
 {
    path:'home/addbook',

@@ -16,6 +16,7 @@ import { AddreviewComponent } from './admin/adminaddbooks/user/registration/addr
 
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { BehaviourserviceService } from './core/behaviourservice.service';
+import { ResolveGuard } from './resolve.guard';
 
 
 
@@ -44,7 +45,7 @@ import { BehaviourserviceService } from './core/behaviourservice.service';
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [BehaviourserviceService],
+  providers: [BehaviourserviceService,ResolveGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,10 +21,10 @@
           <input type="text" placeholder="name" formControlName="name" class="form-control">
         </div>
         <div class="m-5">
-          <input type="text" placeholder="author" formControlName="author"  class="form-control">
+          <input type="text" placeholder="author" formControlName="author"  class="form-control" >
         </div>
         <div class="m-5">
-           <button class="btn btn-success form-control" type="button" (click)="addBooks()">SUBMIT</button>
+           <button class="btn btn-success form-control" type="button" [disabled]="addbooks.invalid" (click)="addBooks()">SUBMIT</button>
         </div>
       </form>
     </div>

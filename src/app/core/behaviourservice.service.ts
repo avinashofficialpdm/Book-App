@@ -10,10 +10,10 @@ export class BehaviourserviceService {
 
 constructor() { }
 
-bookCount(data:any){
-  console.log(data);
+bookCount(bookcount:any){
+  console.log(bookcount);
   
-  this.behaviorsubjectBook.next(data)
+  this.behaviorsubjectBook.next(bookcount)
 
 }
 

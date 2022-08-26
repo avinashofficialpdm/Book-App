@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from '../core/book.service';
+import { admindetails } from '../models/admindetails';
 
 @Component({
   selector: 'app-adminlogin',
@@ -16,8 +17,8 @@ export class AdminloginComponent implements OnInit {
   }
 
 
-  data:any;
-  mydata:any;
+  data:admindetails[]=[];
+  mydata:admindetails|undefined=new admindetails();
   adminlogin:Boolean=false;
 
 
@@ -52,18 +53,32 @@ adminloginform=this.fb.group({
   adminLogin(){
     this.bs.adminLogin().subscribe(res=>{
       this.data=res
-      this.mydata=this.data.find((user:any)=>user.role=='admin')
+      console.log(this.data);
+    
+      if( this.mydata){
+        this.mydata=this.data.find((user:admindetails)=>user.role=='admin')
+
+      }
+     
+      // this.mydata=this.data.find((user:admindetails)=>user.role=='admin')
+     
+    
       console.log(this.mydata);
-      
+      if( this.mydata){
       if(this.mydata.username==this.adminloginform.value.username && this.mydata.password == this.adminloginform.value.password){
         alert("login successsful.....")
         localStorage.setItem('adminlogin','adminLogin')
         this.route.navigateByUrl('home')
 
-      }
-      else{
+       } else{
         alert("Invalid..please login...")
       }
+     
+      }
+
+     
+     
+      
     })
 
   }

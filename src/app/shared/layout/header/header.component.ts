@@ -7,7 +7,7 @@ import { BehaviourserviceService } from 'src/app/core/behaviourservice.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- countbook:any
+ countbook?:number
  adminlogin:boolean=false
   userloggedin:boolean=false
   constructor(private behs:BehaviourserviceService) { }

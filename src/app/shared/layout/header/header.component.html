@@ -15,18 +15,17 @@
         </li>
 
         <li class="nav-item ms-5" >
-          <a class="nav-link" href="userregister" style="color: white;" *ngIf="!adminlogin  && !userloggedin">REGISTRATION</a>
+          <a class="nav-link" routerLink="/userregister" style="color: white;" *ngIf="!adminlogin  && !userloggedin">REGISTRATION</a>
         </li>
 
-     
 
         <li class="nav-item ms-5" *ngIf="!adminlogin  && !userloggedin">
-          <a class="nav-link" href="userlogin" style="color: white;" >USERLOGIN</a>
+          <a class="nav-link" routerLink="/userlogin" style="color: white;" >USERLOGIN</a>
         </li>
 
 
-        <li class="nav-item ms-5  ">
-         <button class="btn btn-danger">BOOK <span>{{countbook}}</span></button>
+        <li class="nav-item ms-5  "  *ngIf="adminlogin  || userloggedin">
+         <button class="btn btn-danger">BOOK <span >{{countbook}}</span></button>
         </li>
        
         <!-- <li class="nav-item dropdown ms-5">
